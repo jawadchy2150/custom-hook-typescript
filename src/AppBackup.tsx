@@ -29,18 +29,43 @@ function App() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     const requestBody: LoginRequestBody = {
       email: email,
       password: password,
     };
+
     await postRequest(requestBody);
     // console.log(postData);
   };
 
+  // const { value, toggle } = useToggle();
+
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
+
+  // const filteredData = data
+  //   ? data.filter((post) =>
+  //       post.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+  //     )
+  //   : [];
+
+  // useEffect(()=> {
+  //   if (debouncedSearchTerm)
+  //     console.log("searching data for: ", debouncedSearchTerm)
+  // }, [debouncedSearchTerm])
+
   return (
     <>
       <h2>Custom hook in Typescript</h2>
-
+      {/* <div>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search..."
+        />
+      </div> */}
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {data && (
@@ -51,9 +76,12 @@ function App() {
         </ul>
       )}
       <div>
-        <button onClick={() => apiCall()}>Reload Data</button>
+        <button onClick={apiCall}>Reload Data</button>
       </div>
-
+      {/* <div>
+        <p>Current Status: {value ? "ON" : "OFF"}</p>
+        <button onClick={toggle}>{value ? "Turn OFF" : "Turn ON"}</button>
+      </div> */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
